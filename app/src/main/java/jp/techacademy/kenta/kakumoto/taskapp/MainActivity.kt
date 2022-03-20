@@ -42,6 +42,44 @@ class MainActivity : AppCompatActivity() {
         //ListViewの設定
         mTaskAdapter = TaskAdapter(this)
 
+        //検索ボタン処理
+        search_button.setOnClickListener{
+            val searchWord = category_edit_text.text.toString()
+            val taskRealmResult = mRealm.where(Task::class.java).equalTo("category", searchWord).findAll()
+            Log.d("TEST","mTaskAdapter: $mTaskAdapter  , taskList: $taskRealmResult ")
+            mTaskAdapter.mTaskList = mRealm.copyFromRealm(taskRealmResult)
+            listView1.adapter = mTaskAdapter
+            mTaskAdapter.notifyDataSetChanged()
+        }
+
+        //全件表示ボタン処理
+        lift_button.setOnClickListener{
+            val taskRealmResult = mRealm.where(Task::class.java).findAll()
+            Log.d("TEST","mTaskAdapter: $mTaskAdapter  , taskList: $taskRealmResult ")
+            mTaskAdapter.mTaskList = mRealm.copyFromRealm(taskRealmResult)
+            listView1.adapter = mTaskAdapter
+            mTaskAdapter.notifyDataSetChanged()
+        }
+
+        //昇順ボタン処理
+        ascend_button.setOnClickListener{
+            val taskRealmResult = mRealm.where(Task::class.java).findAll(). sort("date", Sort.ASCENDING)
+            Log.d("TEST","mTaskAdapter: $mTaskAdapter  , taskList: $taskRealmResult ")
+            mTaskAdapter.mTaskList = mRealm.copyFromRealm(taskRealmResult)
+            listView1.adapter = mTaskAdapter
+            mTaskAdapter.notifyDataSetChanged()
+        }
+
+        //降順ボタン処理
+        descend_button.setOnClickListener{
+            val taskRealmResult = mRealm.where(Task::class.java).findAll(). sort("date", Sort.DESCENDING)
+            Log.d("TEST","mTaskAdapter: $mTaskAdapter  , taskList: $taskRealmResult ")
+            mTaskAdapter.mTaskList = mRealm.copyFromRealm(taskRealmResult)
+            listView1.adapter = mTaskAdapter
+            mTaskAdapter.notifyDataSetChanged()
+        }
+
+
         listView1.setOnItemClickListener{parent, _, position, _ ->
             //入力・編集画面へ
             val task = parent.adapter.getItem(position) as Task
