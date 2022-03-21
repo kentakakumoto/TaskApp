@@ -8,10 +8,59 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp" >
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/search_button"
+            android:id="@+id/category_edit_text"
+            android:inputType="text"
+            android:hint="カテゴリーを入力" />
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@id/lift_button"
+            android:id="@+id/search_button"
+            android:text="検索" />
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/lift_button"
+            android:text="全件表示" />
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/ascend_button"
+            android:text="昇順"
+            android:layout_below="@id/lift_button"
+            android:layout_toLeftOf="@id/descend_button" />
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/descend_button"
+            android:text="降順"
+            android:layout_below="@id/lift_button"
+            android:layout_alignParentRight="true" />
+
+
+    </RelativeLayout>
+
     <ListView
+        android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listView1" />
+        android:layout_marginTop="100dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
